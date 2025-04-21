@@ -18857,6 +18857,88 @@
           "Value": "sha256-bZLUSM9fRhNJKF4yFjKvv9iU/j2aC1lJtEqR9u5n6y8="
         }
       ]
+    },
+    {
+      "Route": "uploads/profile-pictures/ddfb5331-81ce-4e02-99f7-ee967e30b680_638808324009640752.e4qjkrg2tn.png",
+      "AssetFile": "uploads/profile-pictures/ddfb5331-81ce-4e02-99f7-ee967e30b680_638808324009640752.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "517367"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ApXr+8d237OVIsXfLt8fmlzUJylqpQLunwKJly3lVgI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 21 Apr 2025 08:40:00 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "e4qjkrg2tn"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ApXr+8d237OVIsXfLt8fmlzUJylqpQLunwKJly3lVgI="
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/profile-pictures/ddfb5331-81ce-4e02-99f7-ee967e30b680_638808324009640752.png"
+        }
+      ]
+    },
+    {
+      "Route": "uploads/profile-pictures/ddfb5331-81ce-4e02-99f7-ee967e30b680_638808324009640752.png",
+      "AssetFile": "uploads/profile-pictures/ddfb5331-81ce-4e02-99f7-ee967e30b680_638808324009640752.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "517367"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ApXr+8d237OVIsXfLt8fmlzUJylqpQLunwKJly3lVgI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 21 Apr 2025 08:40:00 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ApXr+8d237OVIsXfLt8fmlzUJylqpQLunwKJly3lVgI="
+        }
+      ]
     }
   ]
 }

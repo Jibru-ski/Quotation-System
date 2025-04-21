@@ -1,14 +1,27 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using QuotationSysAuth.Models;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using QuotationSysAuth.Controllers;
 using QuotationSysAuth.Models;
 
-namespace QuotationSysAuth.Controllers
+namespace MyApp.Controllers
 {
-    public class AccountController(
-        UserManager<User> userManager,
-        SignInManager<User> signInManager)
-        : Controller
+    public class AccountController : Controller
     {
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
+
+        public AccountController(
+            UserManager<User> userManager,
+            SignInManager<User> signInManager)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+        }
+
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
@@ -23,7 +36,7 @@ namespace QuotationSysAuth.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     return RedirectToLocal(returnUrl);
@@ -55,10 +68,10 @@ namespace QuotationSysAuth.Controllers
                     LastName = model.LastName
                 };
 
-                var result = await userManager.CreateAsync(user, model.Password);
+                var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToLocal(returnUrl);
                 }
 
@@ -74,8 +87,113 @@ namespace QuotationSysAuth.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await signInManager.SignOutAsync();
+            await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var model = new ProfileViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber,
+                ProfilePicture = user.ProfilePicture,
+                Address = user.Address,
+                City = user.City,
+                Country = user.Country,
+                DateOfBirth = user.DateOfBirth,
+                Bio = user.Bio
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Profile(ProfileViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                if (user == null)
+                {
+                    return NotFound();
+                }
+
+                // Update user properties
+                user.PhoneNumber = model.PhoneNumber;
+                user.Address = model.Address;
+                user.City = model.City;
+                user.Country = model.Country;
+                user.DateOfBirth = model.DateOfBirth;
+                user.Bio = model.Bio;
+
+                // Save changes to database
+                var result = await _userManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    // Refresh the user data to ensure it's up to date
+                    await _signInManager.RefreshSignInAsync(user);
+                    TempData["SuccessMessage"] = "Profile updated successfully!";
+                    return RedirectToAction(nameof(Profile));
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateProfilePicture(IFormFile profilePicture)
+        {
+            if (profilePicture == null || profilePicture.Length == 0)
+            {
+                TempData["ErrorMessage"] = "Please select a valid image file.";
+                return RedirectToAction(nameof(Profile));
+            }
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            // Save the file to a location (you might want to use a file storage service in production)
+            var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", "profile-pictures");
+            Directory.CreateDirectory(uploadsFolder);
+
+            var uniqueFileName = $"{user.Id}_{DateTime.Now.Ticks}{Path.GetExtension(profilePicture.FileName)}";
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await profilePicture.CopyToAsync(stream);
+            }
+
+            // Update the user's profile picture URL
+            user.ProfilePicture = $"/uploads/profile-pictures/{uniqueFileName}";
+            await _userManager.UpdateAsync(user);
+
+            TempData["SuccessMessage"] = "Profile picture updated successfully!";
+            return RedirectToAction(nameof(Profile));
         }
 
         private IActionResult RedirectToLocal(string returnUrl)
@@ -90,4 +208,4 @@ namespace QuotationSysAuth.Controllers
             }
         }
     }
-}
+} 

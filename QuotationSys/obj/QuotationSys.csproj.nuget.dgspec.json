@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\barak\\RiderProjects\\QuotationSys\\Quotationsys\\QuotationSys.csproj": {}
+    "C:\\Users\\barak\\RiderProjects\\QuotationSys\\quotationsys\\QuotationSys.csproj": {}
   },
   "projects": {
-    "C:\\Users\\barak\\RiderProjects\\QuotationSys\\Quotationsys\\QuotationSys.csproj": {
+    "C:\\Users\\barak\\RiderProjects\\QuotationSys\\quotationsys\\QuotationSys.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\barak\\RiderProjects\\QuotationSys\\Quotationsys\\QuotationSys.csproj",
+        "projectUniqueName": "C:\\Users\\barak\\RiderProjects\\QuotationSys\\quotationsys\\QuotationSys.csproj",
         "projectName": "QuotationSys",
-        "projectPath": "C:\\Users\\barak\\RiderProjects\\QuotationSys\\Quotationsys\\QuotationSys.csproj",
+        "projectPath": "C:\\Users\\barak\\RiderProjects\\QuotationSys\\quotationsys\\QuotationSys.csproj",
         "packagesPath": "C:\\Users\\barak\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\barak\\RiderProjects\\QuotationSys\\Quotationsys\\obj\\",
+        "outputPath": "C:\\Users\\barak\\RiderProjects\\QuotationSys\\quotationsys\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\barak\\AppData\\Roaming\\NuGet\\NuGet.Config"
