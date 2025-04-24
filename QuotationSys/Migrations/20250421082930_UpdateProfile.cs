@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace QuotationSysAuth.Migrations
+namespace QuotationSys.Migrations
 {
     /// <inheritdoc />
     public partial class UpdateProfile : Migration

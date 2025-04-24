@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using QuotationSysAuth.Models;
 using Microsoft.EntityFrameworkCore.Metadata;
+using QuotationSys.Models;
 
-namespace QuotationSysAuth.Data
+namespace QuotationSys.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<User>(options)
     {

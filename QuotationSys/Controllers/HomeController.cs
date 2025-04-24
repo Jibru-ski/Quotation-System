@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using QuotationSysAuth.Models;
+using QuotationSys.Models;
 
-namespace QuotationSysAuth.Controllers;
+namespace QuotationSys.Controllers;
 
 public class HomeController : Controller
 {

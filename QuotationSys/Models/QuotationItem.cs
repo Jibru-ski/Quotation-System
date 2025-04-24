@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace QuotationSysAuth.Models;
+namespace QuotationSys.Models;
 
 public class QuotationItem
 {

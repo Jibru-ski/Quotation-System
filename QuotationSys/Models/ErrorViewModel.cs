@@ -1,4 +1,4 @@
-namespace QuotationSysAuth.Models;
+namespace QuotationSys.Models;
 
 public class ErrorViewModel
 {

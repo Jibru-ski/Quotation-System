@@ -1,0 +1,98 @@
+﻿@model QuotationSys.Models.Customer
+
+@{
+    ViewData["Title"] = "Create Customer";
+}
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col">
+            <h1>@ViewData["Title"]</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="CompanyName" class="form-control" placeholder="Company Name" />
+                                    <label asp-for="CompanyName"></label>
+                                    <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="ContactPerson" class="form-control" placeholder="Contact Person" />
+                                    <label asp-for="ContactPerson"></label>
+                                    <span asp-validation-for="ContactPerson" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Email" class="form-control" placeholder="Email Address" />
+                            <label asp-for="Email"></label>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number" />
+                            <label asp-for="PhoneNumber"></label>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="Address" class="form-control" placeholder="Address" />
+                            <label asp-for="Address"></label>
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="City" class="form-control" placeholder="City" />
+                                    <label asp-for="City"></label>
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Country" class="form-control" placeholder="Country" />
+                                    <label asp-for="Country"></label>
+                                    <span asp-validation-for="Country" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="TaxId" class="form-control" placeholder="Tax ID/VAT Number" />
+                            <label asp-for="TaxId"></label>
+                            <span asp-validation-for="TaxId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <textarea asp-for="Notes" class="form-control" placeholder="Notes" style="height: 100px"></textarea>
+                            <label asp-for="Notes"></label>
+                            <span asp-validation-for="Notes" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-secondary me-md-2">Back to List</a>
+                            <button type="submit" class="btn btn-primary">Create Customer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

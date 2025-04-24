@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using QuotationSysAuth.Models;
+using QuotationSys.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-using QuotationSysAuth.Controllers;
-using QuotationSysAuth.Models;
+using QuotationSys.Controllers;
 
 namespace MyApp.Controllers
 {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using QuotationSysAuth.Data;
-using QuotationSysAuth.Models;
+using QuotationSys.Data;
+using QuotationSys.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

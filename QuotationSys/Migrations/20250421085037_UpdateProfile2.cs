@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace QuotationSysAuth.Migrations
+namespace QuotationSys.Migrations
 {
     /// <inheritdoc />
     public partial class UpdateProfile2 : Migration

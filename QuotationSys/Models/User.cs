@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 
-namespace QuotationSysAuth.Models;
+namespace QuotationSys.Models;
 
 public class User : IdentityUser
 {
